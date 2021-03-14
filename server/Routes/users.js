@@ -59,4 +59,41 @@ router.post("/register", async(req, res) => {
         }
     }
 });
+//Login by POST request
+router.post("/login", (req, res) => {
+    User.findOne({ username: req.body.username }).then((user) => {
+        if (!user) {
+            return res.status(404).json({
+                success: false,
+                msg: "User not found",
+            });
+        } else {
+            //Username is matched , Now compare password
+            bcrypt.compare(req.body.password, user.password).then((isMatch) => {
+                if (isMatch) {
+                    //User's password is correct and we need to send Json token of that user
+                    const payload = {
+                        _id: user._id,
+                        username: user.username,
+                        name: user.name,
+                        email: user.email,
+                    };
+                    jwt.sign(payload, key, { expiresIn: 604800 }, (err, token) => {
+                        res.status(200).json({
+                            success: true,
+                            token: `Bearer ${token}`,
+                            user: user,
+                            msg: "Hurry! you are now logged in",
+                        });
+                    });
+                } else {
+                    return res.status(404).json({
+                        success: false,
+                        msg: "Incorrect Password",
+                    });
+                }
+            });
+        }
+    });
+});
 module.exports = router;
