@@ -6,7 +6,6 @@ const passport = require("passport");
 const key = require("../config/keys").secret;
 const User = require("../model/User");
 
-router.get("/", (req, res) => res.send("hello"));
 //Register by POST request
 router.post("/register", async(req, res) => {
     let { name, username, email, password, confirm_password } = req.body;
