@@ -15,18 +15,18 @@
             <router-link class="white--text" to="/about">About</router-link>
           </v-btn>
           <v-btn color="primary" depressed>
-            <router-link class="white--text" to="/login">Login</router-link>
-          </v-btn>
-          <v-btn color="primary" depressed>
             <router-link class="white--text" to="/register">
               Register
             </router-link>
           </v-btn>
           <v-btn color="primary" depressed>
+            <router-link class="white--text" to="/login">Login</router-link>
+          </v-btn>
+          <v-btn color="primary" depressed>
             <router-link class="white--text" to="/profile">Profile</router-link>
           </v-btn>
           <v-btn color="primary" depressed>
-            <router-link class="white--text" to="/logout">Logout</router-link>
+            <a href="#" class="logout">Logout</a>
           </v-btn>
         </div>
       </v-container>
@@ -42,5 +42,8 @@ export default {};
 .titleApp {
   display: inline-block;
   width: 30%;
+}
+.logout {
+  color: #fff;
 }
 </style>
