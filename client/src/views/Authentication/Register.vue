@@ -6,7 +6,7 @@
       </v-card-title>
       <hr />
       <v-card-text>
-        <form>
+        <form @submit.prevent="registerUser">
           <v-text-field v-model="name" label="Name" required></v-text-field>
           <v-text-field
             v-model="username"
@@ -38,6 +38,7 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
   data() {
     return {
@@ -47,6 +48,23 @@ export default {
       password: "",
       confirm_password: "",
     };
+  },
+  methods: {
+    ...mapActions(["register"]),
+    registerUser() {
+      let user = {
+        name: this.name,
+        username: this.username,
+        email: this.email,
+        password: this.password,
+        confirm_password: this.confirm_password,
+      };
+      this.register(user).then((res) => {
+        if (res.data.success) {
+          this.$router.push("/login");
+        }
+      });
+    },
   },
 };
 </script>

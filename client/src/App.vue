@@ -3,6 +3,7 @@
     <Navbar />
     <v-main>
       <v-container>
+        <Errors />
         <router-view></router-view>
       </v-container>
     </v-main>
@@ -11,10 +12,11 @@
 
 <script>
 import Navbar from "./components/Navbar";
+import Errors from "./components/Errors";
 export default {
   name: "App",
 
-  components: { Navbar },
+  components: { Navbar, Errors },
 
   data() {
     return {};

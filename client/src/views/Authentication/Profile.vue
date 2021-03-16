@@ -7,21 +7,17 @@
       <v-card-text>
         <v-list>
           <v-list-item>
-            <v-list-item-title>
-              Name:
-            </v-list-item-title>
+            <v-list-item-title> Name: {{ user.name }} </v-list-item-title>
           </v-list-item>
           <hr />
           <v-list-item>
             <v-list-item-title>
-              Username:
+              Username: {{ user.username }}
             </v-list-item-title>
           </v-list-item>
           <hr />
           <v-list-item>
-            <v-list-item-title>
-              Email:
-            </v-list-item-title>
+            <v-list-item-title> Email:{{ user.email }} </v-list-item-title>
           </v-list-item>
         </v-list>
       </v-card-text>
@@ -30,7 +26,16 @@
 </template>
 
 <script>
-export default {};
+import { mapGetters, mapActions } from "vuex";
+export default {
+  methods: {
+    ...mapActions(["getProfile"]),
+  },
+  computed: mapGetters(["user"]),
+  created() {
+    this.getProfile();
+  },
+};
 </script>
 
 <style lang="scss" scoped></style>

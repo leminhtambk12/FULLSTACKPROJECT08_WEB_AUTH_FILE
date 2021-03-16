@@ -14,19 +14,19 @@
           <v-btn color="primary" depressed>
             <router-link class="white--text" to="/about">About</router-link>
           </v-btn>
-          <v-btn color="primary" depressed>
+          <v-btn color="primary" depressed v-if="!isLoggedIn">
             <router-link class="white--text" to="/register">
               Register
             </router-link>
           </v-btn>
-          <v-btn color="primary" depressed>
+          <v-btn color="primary" depressed v-if="!isLoggedIn">
             <router-link class="white--text" to="/login">Login</router-link>
           </v-btn>
-          <v-btn color="primary" depressed>
+          <v-btn color="primary" depressed v-if="isLoggedIn">
             <router-link class="white--text" to="/profile">Profile</router-link>
           </v-btn>
-          <v-btn color="primary" depressed>
-            <a href="#" class="logout">Logout</a>
+          <v-btn color="primary" depressed v-if="isLoggedIn">
+            <a href="#" class="logout" @click="logout">Logout</a>
           </v-btn>
         </div>
       </v-container>
@@ -35,7 +35,13 @@
 </template>
 
 <script>
-export default {};
+import { mapActions, mapGetters } from "vuex";
+export default {
+  methods: {
+    ...mapActions(["logout"]),
+  },
+  computed: mapGetters(["isLoggedIn"]),
+};
 </script>
 
 <style scoped>
