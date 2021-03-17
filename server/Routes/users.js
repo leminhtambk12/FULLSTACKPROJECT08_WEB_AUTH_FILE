@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken");
 const passport = require("passport");
 const key = require("../config/keys").secret;
 const User = require("../model/User");
+const mongoose = require("mongoose");
 
 //Register by POST request
 router.post("/register", async(req, res) => {
@@ -105,4 +106,13 @@ router.get(
         });
     }
 );
+//Bring Database from MongoDB
+const db = require("../config/keys").mongoURI;
+mongoose
+    .connect(db, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+    })
+    .then(() => console.log(`Server has been connected to ${db}`))
+    .catch((err) => console.log(`Unable to connect database ${err}`));
 module.exports = router;
