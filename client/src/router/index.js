@@ -5,6 +5,8 @@ import Register from "../views/Authentication/Register.vue";
 import Login from "../views/Authentication/Login.vue";
 import Profile from "../views/Authentication/Profile.vue";
 import store from "../store";
+import Ideas from "../views/Ideas.vue";
+import CreateIdea from "../components/CreateIdea.vue";
 
 Vue.use(VueRouter);
 
@@ -42,6 +44,22 @@ const routes = [{
         path: "/profile",
         name: "Profile",
         component: Profile,
+        meta: {
+            requiresAuth: true,
+        },
+    },
+    {
+        path: "/ideas",
+        name: "Ideas",
+        component: Ideas,
+        meta: {
+            requiresAuth: true,
+        },
+    },
+    {
+        path: "/create-idea",
+        name: "CreateIdea",
+        component: CreateIdea,
         meta: {
             requiresAuth: true,
         },

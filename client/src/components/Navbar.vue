@@ -23,6 +23,11 @@
             <router-link class="white--text" to="/login">Login</router-link>
           </v-btn>
           <v-btn color="primary" depressed v-if="isLoggedIn">
+            <router-link class="white--text" to="/ideas"
+              >User-Ideas</router-link
+            >
+          </v-btn>
+          <v-btn color="primary" depressed v-if="isLoggedIn">
             <router-link class="white--text" to="/profile">Profile</router-link>
           </v-btn>
           <v-btn color="primary" depressed v-if="isLoggedIn">

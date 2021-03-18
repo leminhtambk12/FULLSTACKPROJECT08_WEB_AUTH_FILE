@@ -16,5 +16,7 @@ app.use(passport.initialize());
 require("./config/passport")(passport);
 //Routes
 app.use("/api/users", require("./Routes/users"));
+//Route for idea's vote
+app.use("/api", require("./Routes/ideas"));
 const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`Server started on port ${port}`));
